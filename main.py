@@ -7,8 +7,10 @@ import csv
 import re
 from bs4 import BeautifulSoup
 from flask import Flask, send_file, render_template
+from flask_cors import CORS  # ✅ NEW IMPORT
 
 app = Flask(__name__, template_folder="templates")
+CORS(app)  # ✅ ENABLE CORS FOR ALL ROUTES
 
 # Constants
 ZIP_URL = "https://docs.google.com/spreadsheets/d/1zoOIaNbBvfuL3sS3824acpqGxOdSZSIHM8-nI9C-Vfc/export?format=zip"
@@ -30,13 +32,12 @@ EXCLUDE_ARTISTS = {
 }
 
 def remove_emojis(text):
-    # Matches emojis plus any whitespace directly before or after them
     emoji_pattern = re.compile(
         r'\s*['
-        '\U0001F600-\U0001F64F'  # emoticons
-        '\U0001F300-\U0001F5FF'  # symbols & pictographs
-        '\U0001F680-\U0001F6FF'  # transport & map symbols
-        '\U0001F1E0-\U0001F1FF'  # flags (iOS)
+        '\U0001F600-\U0001F64F'
+        '\U0001F300-\U0001F5FF'
+        '\U0001F680-\U0001F6FF'
+        '\U0001F1E0-\U0001F1FF'
         '\u2702-\u27B0'
         '\u24C2-\U0001F251'
         ']\s*',
@@ -65,7 +66,7 @@ def fetch_and_process():
             print("[!] Table not found.")
             return
 
-        rows = table.find_all("tr")[4:]  # Skip first 4 rows
+        rows = table.find_all("tr")[4:]
 
         data = []
         for row in rows:
@@ -78,7 +79,6 @@ def fetch_and_process():
             artist_name_raw = a_tag.text.strip() if a_tag else artist_cell.text.strip()
             artist_name_clean = remove_emojis(artist_name_raw.replace('"', '')).strip()
 
-            # Skip row if artist name is in exclude list
             if artist_name_clean in EXCLUDE_ARTISTS:
                 continue
 
@@ -98,7 +98,6 @@ def fetch_and_process():
             if all(cell for cell in cleaned_row):
                 data.append(cleaned_row)
 
-        # Sort by artist name (case-insensitive)
         data.sort(key=lambda row: row[0].lower())
 
         print(f"[*] Writing {len(data)} rows to CSV...")
@@ -112,11 +111,10 @@ def fetch_and_process():
     except Exception as e:
         print(f"[!] Error: {e}")
 
-
 def background_updater():
     while True:
         fetch_and_process()
-        time.sleep(600)  # 10 minutes
+        time.sleep(600)
 
 # Routes
 @app.route("/")
@@ -138,9 +136,6 @@ def catch_all(path):
     return "CSV not ready yet.", 503
 
 if __name__ == "__main__":
-    # Start background thread
     thread = threading.Thread(target=background_updater, daemon=True)
     thread.start()
-
-    # Start Flask app
     app.run(host="0.0.0.0", port=5000)
