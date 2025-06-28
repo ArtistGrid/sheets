@@ -4,6 +4,7 @@ import time
 import requests
 import zipfile
 import csv
+import re
 from bs4 import BeautifulSoup
 from flask import Flask, send_file, render_template
 
@@ -15,6 +16,34 @@ ZIP_FILE = "sheet.zip"
 EXTRACT_FOLDER = "sheet"
 HTML_FILE = os.path.join(EXTRACT_FOLDER, "Artists.html")
 CSV_FILE = "artists.csv"
+
+# Artist names to exclude (no emojis, trimmed)
+EXCLUDE_ARTISTS = {
+    "🤖 AI Models",
+    "🤖 Lawson",
+    "Comps & Edits",
+    "Worst Comps & Edits",
+    "Yedits",
+    "Allegations",
+    "Rap Disses Timeline",
+    "Underground Artists"
+}
+
+def remove_emojis(text):
+    # Matches emojis plus any whitespace directly before or after them
+    emoji_pattern = re.compile(
+        r'\s*['
+        '\U0001F600-\U0001F64F'  # emoticons
+        '\U0001F300-\U0001F5FF'  # symbols & pictographs
+        '\U0001F680-\U0001F6FF'  # transport & map symbols
+        '\U0001F1E0-\U0001F1FF'  # flags (iOS)
+        '\u2702-\u27B0'
+        '\u24C2-\U0001F251'
+        ']\s*',
+        flags=re.UNICODE
+    )
+    cleaned_text = emoji_pattern.sub('', text)
+    return cleaned_text.strip()
 
 def fetch_and_process():
     try:
@@ -46,13 +75,31 @@ def fetch_and_process():
 
             artist_cell = cols[0]
             a_tag = artist_cell.find("a")
-            artist_name = a_tag.text.strip() if a_tag else artist_cell.text.strip()
+            artist_name_raw = a_tag.text.strip() if a_tag else artist_cell.text.strip()
+            artist_name_clean = remove_emojis(artist_name_raw.replace('"', '')).strip()
+
+            # Skip row if artist name is in exclude list
+            if artist_name_clean in EXCLUDE_ARTISTS:
+                continue
+
             artist_url = a_tag['href'] if a_tag and a_tag.has_attr('href') else ""
             credits = cols[1].get_text(strip=True)
             updated = cols[2].get_text(strip=True)
             links_work = cols[3].get_text(strip=True)
 
-            data.append([artist_name, artist_url, credits, updated, links_work])
+            cleaned_row = [
+                artist_name_clean,
+                remove_emojis(artist_url.replace('"', '')),
+                remove_emojis(credits.replace('"', '')),
+                remove_emojis(updated.replace('"', '')),
+                remove_emojis(links_work.replace('"', ''))
+            ]
+
+            if all(cell for cell in cleaned_row):
+                data.append(cleaned_row)
+
+        # Sort by artist name (case-insensitive)
+        data.sort(key=lambda row: row[0].lower())
 
         print(f"[*] Writing {len(data)} rows to CSV...")
         with open(CSV_FILE, "w", newline="", encoding="utf-8") as f:
@@ -64,6 +111,7 @@ def fetch_and_process():
 
     except Exception as e:
         print(f"[!] Error: {e}")
+
 
 def background_updater():
     while True:
