@@ -131,9 +131,13 @@ def serve_csv():
 
 @app.route("/<path:path>")
 def catch_all(path):
+    if path.startswith("_next/") or path.startswith("templates/_next/"):
+        # Let frontend handle it (or you can serve static files here if needed)
+        return "", 404  # Or use `send_from_directory()` if serving files
     if os.path.exists(CSV_FILE):
         return send_file(CSV_FILE, mimetype="text/csv", as_attachment=False)
     return "CSV not ready yet.", 503
+
 
 if __name__ == "__main__":
     thread = threading.Thread(target=background_updater, daemon=True)
