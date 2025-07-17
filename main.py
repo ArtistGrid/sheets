@@ -8,6 +8,7 @@ import re
 from bs4 import BeautifulSoup
 from flask import Flask, send_file, render_template
 from flask_cors import CORS  # ✅ NEW IMPORT
+from flask import send_from_directory
 
 app = Flask(__name__, template_folder="templates")
 CORS(app)  # ✅ ENABLE CORS FOR ALL ROUTES
@@ -135,13 +136,13 @@ def serve_csv():
 
 @app.route("/<path:path>")
 def catch_all(path):
-    if path.startswith("_next/") or path.startswith("templates/_next/"):
-        # Let frontend handle it (or you can serve static files here if needed)
-        return "", 404  # Or use `send_from_directory()` if serving files
     if os.path.exists(CSV_FILE):
         return send_file(CSV_FILE, mimetype="text/csv", as_attachment=False)
     return "CSV not ready yet.", 503
 
+@app.route('/_next/<path:filename>')
+def serve_next(filename):
+    return send_from_directory(os.path.join(app.template_folder, '_next'), filename)
 
 if __name__ == "__main__":
     thread = threading.Thread(target=background_updater, daemon=True)
