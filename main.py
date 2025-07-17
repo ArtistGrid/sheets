@@ -123,6 +123,10 @@ def background_updater():
 def index():
     return render_template("index.html")
 
+@app.route('/favicon.png')
+def serve_favicon():
+    return send_from_directory(app.template_folder, 'favicon.png')
+
 @app.route("/artists.csv")
 def serve_csv():
     if os.path.exists(CSV_FILE):
