@@ -6,16 +6,17 @@ import zipfile
 import csv
 import re
 from bs4 import BeautifulSoup
-from flask import Flask, send_file, render_template
-from flask_cors import CORS  # ✅ NEW IMPORT
-from flask import send_from_directory
+from flask import Flask, send_file, render_template, send_from_directory
+from flask_cors import CORS
 
 app = Flask(__name__, template_folder="templates")
 CORS(app)  # ✅ ENABLE CORS FOR ALL ROUTES
 
 # Constants
 ZIP_URL = "https://docs.google.com/spreadsheets/d/1DpuNNPfr5NwAnr1enVHjHjs_zhWiKwXd6KCpGXGjqxw/export?format=zip"
+XLSX_URL = "https://docs.google.com/spreadsheets/d/1DpuNNPfr5NwAnr1enVHjHjs_zhWiKwXd6KCpGXGjqxw/export?format=xlsx"
 ZIP_FILE = "Trackerhub.zip"
+XLSX_FILE = "artists.xlsx"
 EXTRACT_FOLDER = "sheet"
 HTML_FILE = os.path.join(EXTRACT_FOLDER, "Artists.html")
 CSV_FILE = "artists.csv"
@@ -57,6 +58,11 @@ def fetch_and_process():
         print("[*] Extracting ZIP...")
         with zipfile.ZipFile(ZIP_FILE, 'r') as zip_ref:
             zip_ref.extractall(EXTRACT_FOLDER)
+
+        print("[*] Downloading XLSX...")
+        r = requests.get(XLSX_URL)
+        with open(XLSX_FILE, "wb") as f:
+            f.write(r.content)
 
         print("[*] Parsing HTML...")
         with open(HTML_FILE, "r", encoding="utf-8") as f:
@@ -107,7 +113,7 @@ def fetch_and_process():
             writer.writerow(["artist name", "URL", "credits", "updated", "links work"])
             writer.writerows(data)
 
-        print("[✓] Done! CSV updated.")
+        print("[✓] Done! CSV and XLSX updated.")
 
     except Exception as e:
         print(f"[!] Error: {e}")
@@ -133,6 +139,12 @@ def serve_csv():
     if os.path.exists(CSV_FILE):
         return send_file(CSV_FILE, mimetype="text/csv", as_attachment=False)
     return "CSV not ready yet.", 503
+
+@app.route("/artists.xlsx")
+def serve_xlsx():
+    if os.path.exists(XLSX_FILE):
+        return send_file(XLSX_FILE, mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", as_attachment=False)
+    return "XLSX not ready yet.", 503
 
 @app.route("/artists.html")
 def serve_artists_html():
