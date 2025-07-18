@@ -14,8 +14,8 @@ app = Flask(__name__, template_folder="templates")
 CORS(app)  # ✅ ENABLE CORS FOR ALL ROUTES
 
 # Constants
-ZIP_URL = "https://docs.google.com/spreadsheets/d/1zoOIaNbBvfuL3sS3824acpqGxOdSZSIHM8-nI9C-Vfc/export?format=zip"
-ZIP_FILE = "sheet.zip"
+ZIP_URL = "https://docs.google.com/spreadsheets/1HmjSUnxItSeRh0rszXULvVDF3nM5rzW2_cSHKE00tns/export?format=zip"
+ZIP_FILE = "Leaks.zip"
 EXTRACT_FOLDER = "sheet"
 HTML_FILE = os.path.join(EXTRACT_FOLDER, "Artists.html")
 CSV_FILE = "artists.csv"
