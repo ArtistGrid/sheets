@@ -134,6 +134,12 @@ def serve_csv():
         return send_file(CSV_FILE, mimetype="text/csv", as_attachment=False)
     return "CSV not ready yet.", 503
 
+@app.route("/artists.html")
+def serve_artists_html():
+    if os.path.exists(HTML_FILE):
+        return send_file(HTML_FILE, mimetype="text/html")
+    return "HTML file not found.", 404
+
 @app.route("/<path:path>")
 def catch_all(path):
     if os.path.exists(CSV_FILE):
