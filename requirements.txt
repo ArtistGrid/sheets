@@ -1,4 +1,4 @@
-flask
-flask-cors
+Flask
 requests
 beautifulsoup4
+lxml
