@@ -113,9 +113,10 @@ def generate_csv():
         data.append([artist_name_clean, artist_url, credit, links_work, updated, best])
 
     with open(CSV_FILENAME, "w", newline='', encoding="utf-8") as csvfile:
-        writer = csv.writer(csvfile)
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         writer.writerow(["Artist Name", "URL", "Credit", "Links Work", "Updated", "Best"])
         writer.writerows(data)
+
 
     print(f"✅ CSV saved as {CSV_FILENAME}")
 
