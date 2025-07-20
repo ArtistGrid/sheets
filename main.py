@@ -13,9 +13,9 @@ app = Flask(__name__, template_folder="templates")
 CORS(app)  # ✅ ENABLE CORS FOR ALL ROUTES
 
 # Constants
-ZIP_URL = "https://docs.google.com/spreadsheets/d/1DpuNNPfr5NwAnr1enVHjHjs_zhWiKwXd6KCpGXGjqxw/export?format=zip"
-XLSX_URL = "https://docs.google.com/spreadsheets/d/1DpuNNPfr5NwAnr1enVHjHjs_zhWiKwXd6KCpGXGjqxw/export?format=xlsx"
-ZIP_FILE = "Trackerhub.zip"
+ZIP_URL = "https://docs.google.com/spreadsheets/d/1S6WwM05O277npQbaiNk-jZlXK3TdooSyWtqaWUvAI78/export?format=zip"
+XLSX_URL = "https://docs.google.com/spreadsheets/d/1S6WwM05O277npQbaiNk-jZlXK3TdooSyWtqaWUvAI78/export?format=xlsx"
+ZIP_FILE = "Trackerhub Reup.zip"
 XLSX_FILE = "artists.xlsx"
 EXTRACT_FOLDER = "sheet"
 HTML_FILE = os.path.join(EXTRACT_FOLDER, "Artists.html")
