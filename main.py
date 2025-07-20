@@ -13,6 +13,7 @@ import json
 from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 ZIP_URL = "https://docs.google.com/spreadsheets/d/1S6WwM05O277npQbaiNk-jZlXK3TdooSyWtqaWUvAI78/export?format=zip"
 XLSX_URL = "https://docs.google.com/spreadsheets/d/1S6WwM05O277npQbaiNk-jZlXK3TdooSyWtqaWUvAI78/export?format=xlsx"
@@ -247,9 +248,6 @@ def update_loop():
             print(f"⚠️ Error updating files: {e}")
 
         time.sleep(600)  # 10 minutes
-
-app = Flask(__name__)
-CORS(app)
 
 @app.route("/artists.html")
 def serve_artists_html():
