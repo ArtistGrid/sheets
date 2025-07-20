@@ -1,0 +1,14 @@
+name: Sheets Deploy Hook
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send GET request to Sheets Deploy Hook
+        run: curl -X GET "$SHEETS_DEPLOY_HOOK"
+        env:
+          SHEETS_DEPLOY_HOOK: ${{ secrets.SHEETS_DEPLOY_HOOK }}
