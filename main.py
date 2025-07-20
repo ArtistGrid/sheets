@@ -7,10 +7,9 @@ import hashlib
 from bs4 import BeautifulSoup
 import csv
 import re
-from flask import Flask, send_file
+from flask import Flask, send_file, send_from_directory, abort
 import os
 import json
-
 app = Flask(__name__)
 
 ZIP_URL = "https://docs.google.com/spreadsheets/d/1S6WwM05O277npQbaiNk-jZlXK3TdooSyWtqaWUvAI78/export?format=zip"
@@ -258,23 +257,22 @@ def serve_artists_csv():
 def serve_artists_xlsx():
     return send_file(XLSX_FILENAME, mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
+# Serve index.html at "/", "/index", and "/index.html"
 @app.route("/")
-@app.route("/index.html/")
+@app.route("/index")
+@app.route("/index.html")
 def serve_index():
-    # Simple index page linking to your files
-    return """
-    <html>
-        <head><title>Artists Data</title></head>
-        <body>
-            <h1>Artists Data</h1>
-            <ul>
-                <li><a href="/artists.html">Artists.html</a></li>
-                <li><a href="/artists.csv">artists.csv</a></li>
-                <li><a href="/artists.xlsx">artists.xlsx</a></li>
-            </ul>
-        </body>
-    </html>
-    """
+    return send_file("templates/index.html", mimetype="text/html")
+
+# Serve static files from templates/_next/ as /_next/...
+@app.route("/_next/<path:filename>")
+def serve_next_static(filename):
+    return send_from_directory("templates/_next", filename)
+
+# Custom 404 error page
+@app.errorhandler(404)
+def page_not_found(e):
+    return send_file("templates/404.html", mimetype="text/html"), 404
 
 if __name__ == "__main__":
     threading.Thread(target=update_loop, daemon=True).start()
