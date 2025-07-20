@@ -248,6 +248,9 @@ def update_loop():
 
         time.sleep(600)  # 10 minutes
 
+app = Flask(__name__)
+CORS(app)
+
 @app.route("/artists.html")
 def serve_artists_html():
     return send_file(HTML_FILENAME, mimetype="text/html")
@@ -277,8 +280,6 @@ def serve_next_static(filename):
 def page_not_found(e):
     return send_file("templates/404.html", mimetype="text/html"), 404
 
-app = Flask(__name__)
-CORS(app)
 
 if __name__ == "__main__":
     threading.Thread(target=update_loop, daemon=True).start()
