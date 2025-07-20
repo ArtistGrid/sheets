@@ -10,6 +10,8 @@ import re
 from flask import Flask, send_file, send_from_directory, abort
 import os
 import json
+from flask_cors import CORS
+
 app = Flask(__name__)
 
 ZIP_URL = "https://docs.google.com/spreadsheets/d/1S6WwM05O277npQbaiNk-jZlXK3TdooSyWtqaWUvAI78/export?format=zip"
@@ -274,6 +276,9 @@ def serve_next_static(filename):
 @app.errorhandler(404)
 def page_not_found(e):
     return send_file("templates/404.html", mimetype="text/html"), 404
+
+app = Flask(__name__)
+CORS(app)
 
 if __name__ == "__main__":
     threading.Thread(target=update_loop, daemon=True).start()
