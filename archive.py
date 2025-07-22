@@ -1,17 +1,25 @@
+import logging
 from waybackpy import WaybackMachineSaveAPI
 import time
 import random
 
 from config import ARCHIVE_URLS, USER_AGENT
 
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
 def archive_url(url):
-    print(f"🌐 Archiving {url} ...")
+    logger.info(f"🌐 Archiving {url} ...")
     try:
         save_api = WaybackMachineSaveAPI(url, user_agent=USER_AGENT)
         save_api.save()
-        print(f"✅ Archived {url}")
+        logger.info(f"✅ Archived {url}")
     except Exception as e:
-        print(f"⚠️ Exception archiving {url}: {e}")
+        logger.error(f"⚠️ Exception archiving {url}: {e}")
 
 def archive_all_urls():
     for url in ARCHIVE_URLS:
