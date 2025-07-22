@@ -22,13 +22,14 @@ exclude_names = {
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36"
 
-BASE_URL = "https://artistgrid.cx"
+BASE_URL = "https://sheets.artistgrid.cx"
 
 ARCHIVE_URLS = [
     f"{BASE_URL}/",
     f"{BASE_URL}/artists.html",
     f"{BASE_URL}/artists.csv",
     f"{BASE_URL}/artists.xlsx",
+    f"https://artistgrid.cx",
 ]
 
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
