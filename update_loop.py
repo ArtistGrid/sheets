@@ -45,4 +45,4 @@ def update_loop():
         except Exception as e:
             print(f"⚠️ Error updating files: {e}")
 
-        time.sleep(6)
+        time.sleep(600)
