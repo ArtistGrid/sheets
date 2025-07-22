@@ -4,6 +4,7 @@ import threading
 
 from config import HTML_FILENAME, CSV_FILENAME, XLSX_FILENAME
 from update_loop import update_loop
+from archive import test_archive
 
 app = Flask(__name__)
 CORS(app)
@@ -38,12 +39,5 @@ if __name__ == "__main__":
     threading.Thread(target=update_loop, daemon=True).start()
     from downloader import download_zip_and_extract_html, download_xlsx
     from parser import generate_csv
-
-    try:
-        download_zip_and_extract_html()
-        download_xlsx()
-        generate_csv()
-    except Exception as e:
-        print(f"⚠️ Initial update failed: {e}")
 
     app.run(host="0.0.0.0", port=5000)
