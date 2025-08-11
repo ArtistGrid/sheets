@@ -12,9 +12,8 @@ XLSX_FILENAME = "artists.xlsx"
 
 exclude_names = {
     "AI Models",
-    "Lawson",
-    "BPM Tracker",
-    "Worst Comps & Edits",
+    "🎹 BPM & Key Tracker",
+    "🎹 Worst Comps & Edits",
     "Allegations",
     "Rap Disses Timeline",
     "Underground Artists",
