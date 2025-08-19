@@ -19,6 +19,7 @@ exclude_names = {
     "🎹 Worst Comps & Edits",
     "🎹Worst Comps & Edits",
     "🎹 Yedits",
+    "🎹Comps & Edits",
     "Allegations",
     "Rap Disses Timeline",
     "Underground Artists",
