@@ -1,15 +1,15 @@
 {
-  "last_updated": "2025-08-11T17:26:51.365776Z",
+  "last_updated": "2025-08-19T05:14:17.304876Z",
   "files": {
     "Artists.html": {
-      "hash": "5c794c69a86112ac86a59c25f62409754b692b08ab57c4555afa9e45721ed054",
-      "last_archived": "2025-08-11T17:26:51.365790Z"
+      "hash": "b48e3d341500e82e179f8813443e5fed899313b48ef79b83bd87388189c49a90",
+      "last_archived": "2025-08-19T05:14:17.304886Z"
     },
     "artists.csv": {
-      "hash": "f65b4bac779810e9f6775f3d98505d876e2692233c2581bd4a53471c8cf188ac"
+      "hash": "609ab1ad6adf62bc1ab8e1b433e1676ab6787e65c760e22d7da7a8e26bbdf33e"
     },
     "artists.xlsx": {
-      "hash": "f41e3527911e55863c3cc4e0cec778bb689d8d6d5086c53fe964df963583b910"
+      "hash": "101b6cdef091774668b030bd1bed27a78cb227b487f5f04883c7a2f4bb184b5e"
     }
   }
 }

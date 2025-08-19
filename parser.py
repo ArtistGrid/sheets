@@ -19,8 +19,11 @@ def generate_csv():
         if len(cells) < 4:
             continue
 
+        # Always take the artist name from the column text
+        artist_name_raw = cells[0].get_text(strip=True)
+
+        # Only use the <a> for the URL (if it exists)
         link_tag = cells[0].find("a")
-        artist_name_raw = link_tag.get_text(strip=True) if link_tag else cells[0].get_text(strip=True)
         artist_url = link_tag["href"] if link_tag else ""
         if not artist_url:
             continue

@@ -15,7 +15,10 @@ exclude_names = {
     "K4HKn0",
     "AI Models",
     "🎹 BPM & Key Tracker",
+    "🎹Comps & Edits"
     "🎹 Worst Comps & Edits",
+    "🎹Worst Comps & Edits",
+    "🎹 Yedits",
     "Allegations",
     "Rap Disses Timeline",
     "Underground Artists",
