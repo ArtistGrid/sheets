@@ -1,20 +1,30 @@
-import os, json, requests
+# notify.py
+import json
+import logging
+
+import requests
 
 from config import DISCORD_WEBHOOK_URL
 
-def send_discord_message(content):
+logger = logging.getLogger(__name__)
+
+
+def send_discord_message(content: str):
     if not DISCORD_WEBHOOK_URL:
-        print("⚠️ Discord webhook URL not set in env")
+        logger.warning("Discord webhook URL not set. Skipping notification.")
         return
+
+    if len(content) > 2000:
+        content = content[:1990] + "\n... (truncated)"
 
     headers = {"Content-Type": "application/json"}
     data = {"content": content}
 
     try:
-        resp = requests.post(DISCORD_WEBHOOK_URL, headers=headers, data=json.dumps(data), timeout=10)
-        if resp.status_code in (200, 204):
-            print("✅ Discord notification sent")
-        else:
-            print(f"⚠️ Failed to send Discord notification, status code {resp.status_code}")
-    except Exception as e:
-        print(f"⚠️ Exception sending Discord notification: {e}")
+        response = requests.post(
+            DISCORD_WEBHOOK_URL, headers=headers, data=json.dumps(data), timeout=10
+        )
+        response.raise_for_status()
+        logger.info("✅ Discord notification sent successfully.")
+    except requests.RequestException as e:
+        logger.error(f"⚠️ Exception sending Discord notification: {e}")

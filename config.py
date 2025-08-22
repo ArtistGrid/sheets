@@ -11,6 +11,7 @@ CSV_FILENAME = "artists.csv"
 XLSX_FILENAME = "artists.xlsx"
 
 exclude_names = {
+    "🎹Worst Comps & Edits"
     "K4$H K4$$!n0",
     "K4HKn0",
     "AI Models",

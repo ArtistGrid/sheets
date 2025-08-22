@@ -1,36 +1,42 @@
-import requests, zipfile
+# downloader.py
+import logging
+import zipfile
 
-from config import ZIP_URL, ZIP_FILENAME, HTML_FILENAME, XLSX_URL, XLSX_FILENAME
+import requests
+
+from config import HTML_FILENAME, XLSX_FILENAME, XLSX_URL, ZIP_FILENAME, ZIP_URL
+
+logger = logging.getLogger(__name__)
+
+
+def _download_file(url: str, filename: str, timeout: int = 30) -> bool:
+    logger.info(f"🔄 Downloading {filename}...")
+    try:
+        with requests.get(url, timeout=timeout) as r:
+            r.raise_for_status()
+            with open(filename, "wb") as f:
+                f.write(r.content)
+        logger.info(f"✅ Saved {filename}")
+        return True
+    except requests.RequestException as e:
+        logger.error(f"❌ Failed to download {filename}: {e}")
+        return False
+
 
 def download_zip_and_extract_html():
-    print("🔄 Downloading ZIP...")
-    try:
-        with requests.get(ZIP_URL, timeout=30) as r:
-            r.raise_for_status()
-            with open(ZIP_FILENAME, "wb") as f:
-                f.write(r.content)
-        print(f"✅ Saved ZIP as {ZIP_FILENAME}")
-    except requests.RequestException as e:
-        print(f"❌ Failed to download ZIP: {e}")
+    if not _download_file(ZIP_URL, ZIP_FILENAME):
         return
 
+    logger.info(f"📦 Extracting {HTML_FILENAME} from {ZIP_FILENAME}...")
     try:
         with zipfile.ZipFile(ZIP_FILENAME, "r") as z:
-            with z.open(HTML_FILENAME) as html_file:
-                html_content = html_file.read()
-            with open(HTML_FILENAME, "wb") as f:
-                f.write(html_content)
-        print(f"✅ Extracted {HTML_FILENAME}")
-    except (zipfile.BadZipFile, KeyError) as e:
-        print(f"❌ Failed to extract {HTML_FILENAME}: {e}")
+            html_content = z.read(HTML_FILENAME)
+        with open(HTML_FILENAME, "wb") as f:
+            f.write(html_content)
+        logger.info(f"✅ Extracted {HTML_FILENAME}")
+    except (zipfile.BadZipFile, KeyError, FileNotFoundError) as e:
+        logger.error(f"❌ Failed to extract {HTML_FILENAME}: {e}")
+
 
 def download_xlsx():
-    print("🔄 Downloading XLSX...")
-    try:
-        with requests.get(XLSX_URL, timeout=30) as r:
-            r.raise_for_status()
-            with open(XLSX_FILENAME, "wb") as f:
-                f.write(r.content)
-        print(f"✅ Saved XLSX as {XLSX_FILENAME}")
-    except requests.RequestException as e:
-        print(f"❌ Failed to download XLSX: {e}")
+    _download_file(XLSX_URL, XLSX_FILENAME)
