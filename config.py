@@ -1,6 +1,6 @@
 import os
 
-SHEET_URL = "https://docs.google.com/spreadsheets/d/1XLlR7PnniA8WjLilQPu3Rhx1aLZ4MT2ysIeXp8XSYJA"
+SHEET_URL = "https://docs.google.com/spreadsheets/d/1Z8aANbxXbnUGoZPRvJfWL3gz6jrzPPrwVt3d0c1iJ_4/"
 ZIP_URL = SHEET_URL + "/export?format=zip"
 XLSX_URL = SHEET_URL + "/export?format=xlsx"
 
@@ -24,6 +24,8 @@ exclude_names = {
     "Allegations",
     "Rap Disses Timeline",
     "Underground Artists",
+    "🎹 Comps & Edits",
+    "🎹 Worst Comps & Edits"
 }
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36"
