@@ -1,6 +1,6 @@
 import os
 
-SHEET_URL = "https://docs.google.com/spreadsheets/d/1Z8aANbxXbnUGoZPRvJfWL3gz6jrzPPrwVt3d0c1iJ_4/"
+SHEET_URL = "https://docs.google.com/spreadsheets/d/1Z8aANbxXbnUGoZPRvJfWL3gz6jrzPPrwVt3d0c1iJ_4"
 ZIP_URL = SHEET_URL + "/export?format=zip"
 XLSX_URL = SHEET_URL + "/export?format=xlsx"
 
