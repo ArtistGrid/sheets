@@ -43,15 +43,17 @@ const (
 
 var ExcludeNames = map[string]bool{
 	"🎹Worst Comps & Edits":  true,
+	"🎹 Yedits":              true,
 	"🎹 Comps & Edits":       true,
 	"Comps & Edits":         true,
+	"Worst Comps & Edits":   true,
+	"Yedits":                true,
 	"K4$H K4$$!n0":          true,
 	"K4HKn0":                true,
 	"AI Models":             true,
 	"🎹 BPM & Key Tracker":   true,
 	"🎹Comps & Edits":        true,
 	"🎹 Worst Comps & Edits": true,
-	"🎹 Yedits":              true,
 	"Allegations":           true,
 	"Rap Disses Timeline":   true,
 	"Underground Artists":   true,
