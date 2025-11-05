@@ -43,6 +43,8 @@ const (
 
 var ExcludeNames = map[string]bool{
 	"🎹Worst Comps & Edits":  true,
+	"🎹 Comps & Edits":       true,
+	"Comps & Edits":         true,
 	"K4$H K4$$!n0":          true,
 	"K4HKn0":                true,
 	"AI Models":             true,
