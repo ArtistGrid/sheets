@@ -61,8 +61,9 @@ var ExcludeNames = map[string]bool{
 
 var ManualCSVRows = [][]string{
 	{"Kanye West", "https://docs.google.com/spreadsheets/d/1oGgQrlUxxoGNAiKa_98vhjxR96pxJ3OdvVHKqpvb29w/", "p4, @kiwieater, Maker, Bobby, SamV1sion, @comptonrapper, Rose, Dr Wolf, Oreo Eater, Arco, @Free The Robots, @Alek, @Commandtechno, Snoop Dogg, Awesomefied, @rocky, @flab, Shadow, Reuben🇮🇪, @razacosmica, @Marcemaire, Solidus Jack, Marin, garfiiieeelld", "Yes", "Yes", "Yes"},
-	{"BI$H", "https://docs.google.com/spreadsheets/d/1d_tTCAIgNmSYvCqx2WuoSfsHcfsRX_mAsvBhI6CPaVM/edit?usp=drivesdk", "fish (?, dont take my word on this im not sure)", "yes", "yes", "yes"},
-	{"mzyxx", "https://docs.google.com/spreadsheets/d/1fbUISzmf3BqhJKwQKl4gegjadO8X6Db77B_TJw1YtsA/edit?usp=sharing", "xyan", "yes", "yes", "yes"},
+	{"BI$H", "https://docs.google.com/spreadsheets/d/1d_tTCAIgNmSYvCqx2WuoSfsHcfsRX_mAsvBhI6CPaVM/edit?usp=drivesdk", "fish (?, dont take my word on this im not sure)", "Yes", "Yes", "Yes"},
+	{"mzyxx", "https://docs.google.com/spreadsheets/d/1fbUISzmf3BqhJKwQKl4gegjadO8X6Db77B_TJw1YtsA/edit?usp=sharing", "xyan", "Yes", "Yes", "Yes"},
+	{"Unc and Phew", "https://docs.google.com/spreadsheets/d/1-JdaCDJOSA6NTmClTnnmEMBGTqNgaw-RZiQ7ulABpO8/edit?usp=drivesdk", "xyan (me), michael", "Yes", "Yes", "Yes"},
 }
 
 var (
