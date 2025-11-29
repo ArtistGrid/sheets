@@ -593,6 +593,10 @@ func main() {
 		return c.SendFile("templates/index.html")
 	})
 
+	app.Get("/robots.txt", func(c *fiber.Ctx) error {
+		return c.SendFile("templates/robots.txt")
+	})
+
 	app.Get("/artists.html", func(c *fiber.Ctx) error {
 		return c.SendFile(HTMLFilename)
 	})
