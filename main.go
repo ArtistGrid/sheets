@@ -57,6 +57,8 @@ var ExcludeNames = map[string]bool{
 	"Allegations":           true,
 	"Rap Disses Timeline":   true,
 	"Underground Artists":   true,
+	"bpmkeytracker":	true,
+	"🎹 BPM & Key Tracker":	true,
 }
 
 var ManualCSVRows = [][]string{
