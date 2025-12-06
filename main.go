@@ -63,7 +63,7 @@ var ExcludeNames = map[string]bool{
 var ManualCSVRows = [][]string{
 	{"Kanye West", "https://docs.google.com/spreadsheets/d/1VfpFhHpcLK6G_4sLKykLHV0PdlQar1Fc6sk5TLubMRg/", "p4, @kiwieater, Maker, Bobby, SamV1sion, @comptonrapper, Rose, Dr Wolf, Oreo Eater, Arco, @Free The Robots, @Alek, @Commandtechno, Snoop Dogg, Awesomefied, @rocky, @flab, Shadow, Reuben🇮🇪, @razacosmica, @Marcemaire, Solidus Jack, Marin, garfiiieeelld", "Yes", "Yes", "Yes"},
 	{"Kanye West (Suzy version)", "https://docs.google.com/spreadsheets/d/14nhCu-LYd4gi-r7jsVjJRKqUh4SkcwMA4b-1V15wdug/", "p4, @kiwieater, Maker, Bobby, SamV1sion, @comptonrapper, Rose, Dr Wolf, Oreo Eater, Arco, @Free The Robots, @Alek, @Commandtechno, Snoop Dogg, Awesomefied, @rocky, @flab, Shadow, Reuben🇮🇪, @razacosmica, @Marcemaire, Solidus Jack, Marin, garfiiieeelld", "Yes", "Yes", "no"},
-	{"BI$H", "https://docs.google.com/spreadsheets/d/1d_tTCAIgNmSYvCqx2WuoSfsHcfsRX_mAsvBhI6CPaVM/", "fish (?, dont take my word on this im not sure)", "Yes", "Yes", "no"},
+	{"BI$H", "https://docs.google.com/spreadsheets/d/1aoaUmgc4EyJ6hp6Ea5FrstdMcA3rYFW9g7drlrSiiXI/", "fish (?, dont take my word on this im not sure)", "Yes", "Yes", "no"},
 	{"mzyxx", "https://docs.google.com/spreadsheets/d/1fbUISzmf3BqhJKwQKl4gegjadO8X6Db77B_TJw1YtsA/", "xyan", "Yes", "Yes", "no"},
 	{"Unc and Phew", "https://docs.google.com/spreadsheets/d/1-JdaCDJOSA6NTmClTnnmEMBGTqNgaw-RZiQ7ulABpO8/", "xyan, michael", "Yes", "Yes", "no"},
 	{"Tyler, the Creator", "https://docs.google.com/spreadsheets/d/10jvvqsnTrPbPqtfkJTn24-xrhfAssFQxuDwWY9CpZow/", "?", "Yes", "Yes", "yes"},
