@@ -67,6 +67,7 @@ var ManualCSVRows = [][]string{
 	{"mzyxx", "https://docs.google.com/spreadsheets/d/1fbUISzmf3BqhJKwQKl4gegjadO8X6Db77B_TJw1YtsA/", "xyan", "Yes", "Yes", "no"},
 	{"Unc and Phew", "https://docs.google.com/spreadsheets/d/1-JdaCDJOSA6NTmClTnnmEMBGTqNgaw-RZiQ7ulABpO8/", "xyan, michael", "Yes", "Yes", "no"},
 	{"Tyler, the Creator", "https://docs.google.com/spreadsheets/d/10jvvqsnTrPbPqtfkJTn24-xrhfAssFQxuDwWY9CpZow/", "?", "Yes", "Yes", "yes"},
+	{"Afrosurrealist", "https://docs.google.com/spreadsheets/d/1OfLRtdfW0SikpmOJpzBXNVv5L-O3zxP245_T-i6Twgo/", "xyanprod", "Yes", "Yes", "no"},
 }
 
 var (
