@@ -60,6 +60,10 @@ var ExcludeNames = map[string]bool{
 	"bpmkeytracker":         true,
 }
 
+var NameReplacements = map[string]string{
+	"Lasagna": "Frank Ocean",
+}
+
 var ManualCSVRows = [][]string{
 	{"Kanye West", "https://docs.google.com/spreadsheets/d/1VfpFhHpcLK6G_4sLKykLHV0PdlQar1Fc6sk5TLubMRg/", "p4, @kiwieater, Maker, Bobby, SamV1sion, @comptonrapper, Rose, Dr Wolf, Oreo Eater, Arco, @Free The Robots, @Alek, @Commandtechno, Snoop Dogg, Awesomefied, @rocky, @flab, Shadow, Reuben🇮🇪, @razacosmica, @Marcemaire, Solidus Jack, Marin, garfiiieeelld", "Yes", "Yes", "Yes"},
 	{"Kanye West (Suzy version)", "https://docs.google.com/spreadsheets/d/14nhCu-LYd4gi-r7jsVjJRKqUh4SkcwMA4b-1V15wdug/", "p4, @kiwieater, Maker, Bobby, SamV1sion, @comptonrapper, Rose, Dr Wolf, Oreo Eater, Arco, @Free The Robots, @Alek, @Commandtechno, Snoop Dogg, Awesomefied, @rocky, @flab, Shadow, Reuben🇮🇪, @razacosmica, @Marcemaire, Solidus Jack, Marin, garfiiieeelld", "Yes", "Yes", "no"},
@@ -96,6 +100,11 @@ func cleanArtistName(text string) string {
 	cleaned := emojiRegex.ReplaceAllString(text, "")
 	cleaned = strings.TrimSpace(cleaned)
 	cleaned = strings.TrimPrefix(cleaned, " ")
+
+	if replacement, exists := NameReplacements[cleaned]; exists {
+		cleaned = replacement
+	}
+
 	return cleaned
 }
 
