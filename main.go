@@ -73,6 +73,7 @@ var ManualCSVRows = [][]string{
 	{"Tyler, the Creator", "https://docs.google.com/spreadsheets/d/10jvvqsnTrPbPqtfkJTn24-xrhfAssFQxuDwWY9CpZow/", "?", "Yes", "Yes", "yes"},
 	{"Afrosurrealist", "https://docs.google.com/spreadsheets/d/1OfLRtdfW0SikpmOJpzBXNVv5L-O3zxP245_T-i6Twgo/", "xyanprod", "Yes", "Yes", "No"},
 	{"prodbycon", "https://docs.google.com/spreadsheets/d/17jBBPM5ygq8gjx-d5CY_hvFmVPhGOIIhi3s2WTcikI8/", "prodbycon", "Yes", "Yes", "No"},
+	{"Camilla Cabello (Sanchez Version)", "https://docs.google.com/spreadsheets/d/17jBBPM5ygq8gjx-d5CY_hvFmVPhGOIIhi3s2WTcikI8/", "Sanchez05310", "Yes", "Yes", "No"},
 }
 
 var (
