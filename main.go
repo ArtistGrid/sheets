@@ -74,6 +74,7 @@ var ManualCSVRows = [][]string{
 	{"Afrosurrealist", "https://docs.google.com/spreadsheets/d/1OfLRtdfW0SikpmOJpzBXNVv5L-O3zxP245_T-i6Twgo/", "xyanprod", "Yes", "Yes", "No"},
 	{"prodbycon", "https://docs.google.com/spreadsheets/d/17jBBPM5ygq8gjx-d5CY_hvFmVPhGOIIhi3s2WTcikI8/", "prodbycon", "Yes", "Yes", "No"},
 	{"Camilla Cabello (Sanchez Version)", "https://docs.google.com/spreadsheets/d/1XHIMrA-sE4SsT1Xf3W9om0lLwVhOUxeR2v3JM0J8BDw/", "Sanchez05310", "Yes", "Yes", "No"},
+	{"EsDeeKid", "https://docs.google.com/spreadsheets/d/1adwl0w_cAvqw7ZN4jnGNKjh_dOzEiYBCRgGiVcEs8cY/", "drosoje1444_72902", "Yes", "Yes", "No"},
 }
 
 var (
